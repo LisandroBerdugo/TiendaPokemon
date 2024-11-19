@@ -1,0 +1,253 @@
+/* General */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el contenido ocupe toda la pantalla */
+  background-color: #f4f4f4;
+}
+
+/* Cabecera */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 1rem 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffcc00;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+}
+
+.menu ul li:hover {
+  color: #ffcc00;
+}
+
+/* Layout */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
+  margin-top: 100px; /* Aumenta el margen superior */
+}
+
+/* Barra lateral */
+.sidebar {
+  flex: 0 0 260px;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  height: auto; /* Altura dinámica */
+  position: relative;
+  transition: flex-basis 0.3s ease, background-color 0.3s ease;
+}
+
+.sidebar.collapsed {
+  flex: 0 0 60px; /* Ancho colapsado */
+  padding: 10px 5px;
+  background-color: #ffffff; /* Color claro al colapsar */
+}
+
+/* Contenido dentro de la barra lateral */
+.sidebar-content {
+  display: block;
+}
+
+.sidebar.collapsed .sidebar-content {
+  display: none; /* Ocultar contenido al colapsar */
+}
+
+/* Botón de colapsar/expandir */
+.toggle-sidebar-btn {
+  position: absolute;
+  top: 20px; /* Espaciado desde la parte superior */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem; /* Tamaño del ícono */
+  z-index: 100;
+}
+
+.toggle-sidebar-btn:hover {
+  color: #ff5500; /* Cambio de color al pasar el cursor */
+}
+
+.sidebar.collapsed .toggle-sidebar-btn {
+  color: #1a1a1a; /* Cambiar el color cuando está colapsada */
+}
+
+/* Ícono de la lupa o flecha */
+.lupa-icon {
+  font-size: 1.5rem;
+}
+
+.sidebar.collapsed .lupa-icon.fa-search {
+  font-size: 1.5rem; /* Mostrar lupa cuando está colapsada */
+}
+
+.sidebar.collapsed .lupa-icon.fa-arrow-left {
+  font-size: 1.5rem; /* Mostrar flecha al expandir */
+}
+
+/* Centrado vertical de la barra lateral colapsada */
+.sidebar.collapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Filtros */
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+/* Contenido principal */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center; /* Centramos las cartas horizontalmente */
+  margin-top: 20px; /* Espaciado superior */
+}
+
+.productos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espaciado entre tarjetas */
+  justify-content: center; /* Centrar las cartas */
+  max-width: 1200px; /* Limitar ancho máximo */
+  margin-bottom: 40px; /* Espacio para que no se superpongan al pie de página */
+}
+
+/* Tarjetas del producto */
+.producto-card {
+  width: 200px; /* Tamaño fijo para las cartas */
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.producto-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.producto-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.producto-nombre {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.producto-tipo {
+  font-size: 1rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.producto-precio {
+  color: #ff5500;
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.btn-agregar {
+  padding: 10px 15px;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.btn-agregar:hover {
+  background-color: #ff5500;
+}
+
+/* Footer */
+.footer {
+  background-color: #1a1a1a;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+  margin-top: auto; /* Asegura que el pie de página quede al final */
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    flex: 0 0 60px; /* Colapsar automáticamente en pantallas pequeñas */
+  }
+
+  .productos-container {
+    justify-content: center; /* Centrar cartas en pantallas pequeñas */
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .producto-card {
+    width: 200px; /* Mantener tamaño fijo para cartas */
+  }
+
+  .productos-container {
+    overflow-x: auto; /* Permitir desplazamiento horizontal si las cartas no caben */
+    gap: 10px;
+  }
+}

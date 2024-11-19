@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="tiendaApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Pokémon</title>
+  <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="JSON/pokemons.js"></script>
+  <script src="JSON/app.js"></script>
+</head>
+<body ng-controller="MainController as ctrl">
+
+  <!-- Cabecera -->
+  <header class="header">
+    <div class="header-container">
+      <h1 class="logo">Tienda Pokémon</h1>
+      <nav class="menu">
+        <ul>
+          <li>Inicio</li>
+          <li>Productos</li>
+          <li>Carrito</li>
+          <li>Contacto</li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido -->
+<main class="main-container">
+  <!-- Menú lateral (barra de filtros) -->
+<aside class="sidebar" ng-class="{'collapsed': ctrl.sidebarCollapsed}">
+  <!-- Botón para colapsar/expandir la barra lateral -->
+<button class="toggle-sidebar-btn" ng-click="ctrl.toggleSidebar()">
+  <i class="fas" ng-class="{'fa-search': ctrl.sidebarCollapsed, 'fa-arrow-left': !ctrl.sidebarCollapsed}"></i>
+</button>
+  <div class="sidebar-content" ng-hide="ctrl.sidebarCollapsed">
+    <h2>Filtros</h2>
+    <div class="filter-group">
+      <label for="nombre">Buscar por Nombre:</label>
+      <input type="text" id="nombre" placeholder="Nombre del Pokémon" ng-model="ctrl.filtroNombre">
+    </div>
+    <div class="filter-group">
+      <label for="tipo">Filtrar por Tipo:</label>
+      <select id="tipo" ng-model="ctrl.filtroTipo">
+        <option value="">Todos</option>
+        <option value="Planta">Planta</option>
+        <option value="Fuego">Fuego</option>
+        <option value="Agua">Agua</option>
+        <option value="Psíquico">Psíquico</option>
+        <option value="Normal">Normal</option>
+        <option value="Veneno">Veneno</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="rareza">Rareza:</label>
+      <select id="rareza" ng-model="ctrl.filtroRareza">
+        <option value="">Todos</option>
+        <option value="Común">Común</option>
+        <option value="Poco Común">Poco Común</option>
+        <option value="Raro">Raro</option>
+        <option value="Muy Raro">Muy Raro</option>
+      </select>
+    </div>
+  </div>
+</aside>
+
+
+
+  <!-- Contenido principal (cartas de Pokémon) -->
+  <section class="main-content">
+    <div class="productos-container">
+      <div class="producto-card" ng-repeat="pokemon in ctrl.pokemons | filter:ctrl.filtrarPokemons">
+        <img ng-src="{{pokemon.imagen}}" alt="{{pokemon.nombre}}" class="producto-img">
+        <h3 class="producto-nombre">{{pokemon.nombre}}</h3>
+        <p class="producto-tipo">{{pokemon.tipo}} <span ng-if="pokemon.subtipo">/ {{pokemon.subtipo}}</span></p>
+        <p class="producto-precio">Precio: ${{pokemon.precio}}</p>
+        <button class="btn-agregar">Agregar al Carrito</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <!-- Pie de página -->
+  <footer class="footer">
+    <p>© 2024 Tienda Pokémon - Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
