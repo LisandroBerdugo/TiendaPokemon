@@ -84,7 +84,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Raro",
       "precio": 150,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Dugtrio.gif",
       "estadisticas": {
         "velocidad": 5,
         "fortaleza": 4,
@@ -103,7 +103,7 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Poco Común",
       "precio": 75,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Ponyta.gif",
       "estadisticas": {
         "velocidad": 5,
         "fortaleza": 3,
@@ -122,7 +122,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Muy Raro",
       "precio": 300,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Lapras.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 4,
@@ -141,7 +141,7 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Común",
       "precio": 30,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Caterpie.gif",
       "estadisticas": {
         "velocidad": 2,
         "fortaleza": 1,
@@ -160,7 +160,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Poco Común",
       "precio": 75,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Venonat.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 3,
@@ -179,7 +179,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Muy Raro",
       "precio": 300,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Rhydon.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 5,
@@ -198,7 +198,7 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Común",
       "precio": 50,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Tentacool.gif",
       "estadisticas": {
         "velocidad": 4,
         "fortaleza": 2,
@@ -217,7 +217,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Común",
       "precio": 30,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Kakuna.gif",
       "estadisticas": {
         "velocidad": 1,
         "fortaleza": 1,
@@ -236,7 +236,7 @@ var pokemonsData = [
       "genero": null,
       "rareza": "Poco Común",
       "precio": 75,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Staryu.gif",
       "estadisticas": {
         "velocidad": 4,
         "fortaleza": 3,
@@ -255,7 +255,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Raro",
       "precio": 150,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Farfetch'd.gif",
       "estadisticas": {
         "velocidad": 4,
         "fortaleza": 4,
@@ -274,7 +274,7 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Muy Raro",
       "precio": 300,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Dratini.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 4,
@@ -293,7 +293,7 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Común",
       "precio": 50,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Horsea.gif",
       "estadisticas": {
         "velocidad": 4,
         "fortaleza": 3,
@@ -312,7 +312,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Poco Común",
       "precio": 75,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Machoke.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 5,
@@ -331,7 +331,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Muy Raro",
       "precio": 300,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Gengar.gif",
       "estadisticas": {
         "velocidad": 5,
         "fortaleza": 4,
@@ -350,7 +350,7 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Poco Común",
       "precio": 75,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Raichu.gif",
       "estadisticas": {
         "velocidad": 5,
         "fortaleza": 3,
@@ -369,7 +369,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Poco Común",
       "precio": 75,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Growlithe.gif",
       "estadisticas": {
         "velocidad": 4,
         "fortaleza": 3,
@@ -388,7 +388,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Raro",
       "precio": 150,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Exeggutor.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 5,
@@ -407,7 +407,7 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Común",
       "precio": 50,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Golbat.gif",
       "estadisticas": {
         "velocidad": 5,
         "fortaleza": 3,
@@ -426,7 +426,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Común",
       "precio": 50,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Graveler.gif",
       "estadisticas": {
         "velocidad": 2,
         "fortaleza": 4,
@@ -445,7 +445,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Muy Raro",
       "precio": 300,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Snorlax.gif",
       "estadisticas": {
         "velocidad": 2,
         "fortaleza": 5,
@@ -464,7 +464,7 @@ var pokemonsData = [
       "genero": null,
       "rareza": "Raro",
       "precio": 150,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Starmie.gif",
       "estadisticas": {
         "velocidad": 5,
         "fortaleza": 3,
@@ -483,7 +483,7 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Común",
       "precio": 50,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Krabby.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 4,
@@ -502,7 +502,8 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Común",
       "precio": 50,
-      "imagen": null,
+      "precio": 50,
+      "imagen": "imagenes_pokemon/Raticate.gif",
       "estadisticas": {
         "velocidad": 4,
         "fortaleza": 3,
@@ -521,7 +522,8 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Raro",
       "precio": 150,
-      "imagen": null,
+      "precio": 50,
+      "imagen": "imagenes_pokemon/Flareon.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 4,
@@ -540,7 +542,7 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Raro",
       "precio": 150,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Weezing.gif",
       "estadisticas": {
         "velocidad": 3,
         "fortaleza": 4,
@@ -559,7 +561,7 @@ var pokemonsData = [
       "genero": null,
       "rareza": "Muy Raro",
       "precio": 300,
-      "imagen": null,
+      "imagen": "imagenes_pokemon/Articuno.gif",
       "estadisticas": {
         "velocidad": 4,
         "fortaleza": 5,
