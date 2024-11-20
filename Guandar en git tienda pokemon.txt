@@ -1,0 +1,9 @@
+#LIC Tienda pokemon
+
+cd C:\Users\LENOVO\Documents\LIC\Tienda Pokemon
+
+git add . 
+
+git commit -m "Mensaje"
+
+git push

@@ -136,7 +136,7 @@ var pokemonsData = [
     {
       "numero": "0010",
       "nombre": "Caterpie",
-      "tipo": "Bicho",
+      "tipo": "Insecto",
       "subtipo": null,
       "genero": "Hembra",
       "rareza": "Común",
@@ -212,7 +212,7 @@ var pokemonsData = [
     {
       "numero": "0014",
       "nombre": "Kakuna",
-      "tipo": "Bicho",
+      "tipo": "Insecto",
       "subtipo": "Veneno",
       "genero": "Macho",
       "rareza": "Común",

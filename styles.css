@@ -4,7 +4,7 @@ body {
   font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Asegura que el contenido ocupe toda la pantalla */
+  min-height: 100vh;
   background-color: #f4f4f4;
 }
 
@@ -56,8 +56,8 @@ body {
 .main-container {
   display: flex;
   flex-direction: row;
-  flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
-  margin-top: 100px; /* Aumenta el margen superior */
+  flex: 1;
+  margin-top: 100px;
 }
 
 /* Barra lateral */
@@ -68,69 +68,40 @@ body {
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  max-height: calc(100vh - 100px); /* Altura máxima, dejando espacio para el encabezado */
-  position: sticky; /* Se mantiene visible al hacer scroll */
-  top: 100px; /* Margen desde el borde superior igual a la altura del encabezado */
-  transition: flex-basis 0.3s ease, background-color 0.3s ease;
+  max-height: calc(100vh - 100px);
+  position: sticky;
+  top: 100px;
 }
 
+/* Barra lateral en estado colapsado */
 .sidebar.collapsed {
-  flex: 0 0 60px; /* Ancho colapsado */
+  flex: 0 0 60px; /* Ancho reducido cuando está colapsada */
   padding: 10px 5px;
-  background-color: #ffffff; /* Color claro al colapsar */
-  max-height: calc(100vh - 100px); /* Altura máxima también aplicable al colapsar */
+  background-color: #1a1a1a; /* Mantiene el color oscuro */
 }
 
-/* Contenido dentro de la barra lateral */
-.sidebar-content {
-  display: block;
-}
-
+/* Contenido de la barra lateral oculto en estado colapsado */
 .sidebar.collapsed .sidebar-content {
-  display: none; /* Ocultar contenido al colapsar */
+  display: none;
 }
 
-/* Botón de colapsar/expandir */
+/* Botón para alternar la barra lateral */
 .toggle-sidebar-btn {
   position: absolute;
-  top: 20px; /* Espaciado desde la parte superior de la barra */
+  top: 20px; /* Espaciado desde la parte superior */
   left: 50%;
   transform: translateX(-50%);
   background-color: transparent;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 1.5rem; /* Tamaño del ícono */
+  font-size: 1.5rem;
   z-index: 100;
 }
 
-.toggle-sidebar-btn:hover {
-  color: #ff5500; /* Cambio de color al pasar el cursor */
-}
-
+/* Botón cuando la barra lateral está colapsada */
 .sidebar.collapsed .toggle-sidebar-btn {
-  color: #1a1a1a; /* Cambiar el color cuando está colapsada */
-}
-
-/* Ícono de la lupa o flecha */
-.lupa-icon {
-  font-size: 1.5rem;
-}
-
-.sidebar.collapsed .lupa-icon.fa-search {
-  font-size: 1.5rem; /* Mostrar lupa cuando está colapsada */
-}
-
-.sidebar.collapsed .lupa-icon.fa-arrow-left {
-  font-size: 1.5rem; /* Mostrar flecha al expandir */
-}
-
-/* Centrado vertical de la barra lateral colapsada */
-.sidebar.collapsed {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  color: #ffffff; /* Cambia el color del ícono */
 }
 
 /* Filtros */
@@ -138,7 +109,7 @@ body {
   margin-bottom: 20px;
 }
 
-.filter-group input {
+.filter-group input{
   width: 93%;
   padding: 8px;
   border-radius: 5px;
@@ -159,41 +130,54 @@ body {
   flex: 1;
   padding: 20px;
   display: flex;
-  justify-content: center; /* Centramos las cartas horizontalmente */
+  justify-content: center;
 }
 
-.productos-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Espaciado entre tarjetas */
-  justify-content: center; /* Cartas centradas */
-  max-width: 1200px; /* Limitar ancho máximo */
-  margin-top: 40px; /* Espaciado superior ajustado */
-  margin-bottom: 40px; /* Espacio para que no se superpongan al pie de página */
-}
 
 /* Tarjetas del producto */
+/* Contenedor principal de las cartas */
+.productos-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las cartas pasen a la siguiente fila */
+  gap: 20px; /* Espaciado entre tarjetas */
+  justify-content: center; /* Centra las cartas */
+  max-width: 1200px; /* Limita el ancho del contenedor */
+  margin: 40px auto; /* Margen superior e inferior */
+  min-height: auto; /* Evita que el contenedor fuerce una altura mínima innecesaria */
+  align-items: flex-start; /* Asegura que las cartas se alineen arriba */
+}
+
+/* Cartas individuales */
 .producto-card {
-  width: 200px; /* Tamaño fijo para las cartas */
+  width: 200px; /* Ancho fijo de la carta */
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
+  flex-shrink: 0; /* Evita que las cartas se encojan */
+  flex-grow: 0; /* Evita que las cartas se expandan */
 }
 
+/* Efecto de hover en las cartas */
 .producto-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Imagen de las cartas */
 .producto-img {
-  width: 90%;
-  height: 170px;
-  object-fit: cover;
+  width: 90%; /* La imagen ocupará todo el ancho del contenedor */
+  height: 160px; /* Altura fija para todas las imágenes */
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortarla */
+  background-color: #fff; /* Opcional: fondo blanco para las imágenes más pequeñas */
+  border-radius: 8px; /* Opcional: da bordes redondeados a las imágenes */
+  padding: 5px; /* Espaciado interno opcional para evitar que las imágenes toquen los bordes */
 }
 
+
+/* Contenido del texto en las cartas */
 .producto-nombre {
   font-size: 1.2rem;
   margin: 10px 0;
@@ -209,6 +193,35 @@ body {
   color: #ff5500;
   font-size: 1.5rem;
   margin: 10px 0;
+}
+
+/* Botón de agregar al carrito */
+.btn-agregar {
+  padding: 10px 15px;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.btn-agregar:hover {
+  background-color: #ff5500;
+}
+
+/* Ajuste para el contenedor con una sola fila */
+@media (max-width: 768px) {
+  .productos-container {
+    justify-content: center; /* Centra las cartas */
+    align-items: center; /* Centra verticalmente si es necesario */
+  }
+
+  .producto-card {
+    width: 100%; /* Permite que las cartas ocupen todo el ancho en pantallas pequeñas */
+    max-width: 250px; /* Establece un ancho máximo */
+    margin: 0 auto; /* Centra las cartas */
+  }
 }
 
 .btn-agregar {
@@ -232,31 +245,255 @@ body {
   text-align: center;
   padding: 1rem 0;
   width: 100%;
-  margin-top: auto; /* Asegura que el pie de página quede al final */
+  margin-top: auto;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-overlay.show {
+  display: flex;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Modal General */
+.modal-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 600px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative; /* Necesario para el botón de cerrar */
+}
+
+/* Botón de cerrar */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  background: darkred;
+}
+
+/* Contenido del modal */
+.modal-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.modal-header img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.modal-header h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Contenedor de columnas */
+.modal-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.column {
+  flex: 1;
+  text-align: left;
+}
+
+.column h4 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.column p {
+  margin: 5px 0;
+}
+
+/* Línea divisoria */
+.divider {
+  width: 2px;
+  background-color: #ddd;
+  height: auto;
+}
+
+/* Estadísticas */
+.estadistica-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.stat-label {
+  text-transform: capitalize;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.stars {
+  display: flex;
+  gap: 5px;
+}
+
+.stars .fa-star {
+  color: #ffc107;
+  font-size: 1rem;
+}
+
+/* Botón "Agregar al carrito" */
+.modal-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modal-footer .btn-agregar {
+  padding: 10px 20px;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal-footer .btn-agregar:hover {
+  background-color: #ff5500;
 }
 
 /* Ajustes Responsive */
 @media (max-width: 768px) {
-  .sidebar {
-    flex: 0 0 60px; /* Colapsar automáticamente en pantallas pequeñas */
+  .modal-card {
+    width: 100%;
   }
 
-  .productos-container {
-    justify-content: center; /* Centrar cartas en pantallas pequeñas */
+  .modal-body {
+    flex-direction: column;
   }
 
-  .main-content {
-    padding: 10px;
+  .divider {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .producto-card {
-    width: 200px; /* Mantener tamaño fijo para cartas */
+  .modal-header img {
+    max-width: 100px;
   }
 
-  .productos-container {
-    overflow-x: auto; /* Permitir desplazamiento horizontal si las cartas no caben */
-    gap: 10px;
+  .column {
+    padding: 5px 0;
   }
+}
+
+/* Estilos generales para el modo oscuro */
+body.dark-mode {
+  background-color: #121212; /* Fondo oscuro */
+  color: #e0e0e0; /* Texto claro */
+}
+
+.dark-mode .header {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .sidebar {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dark-mode .producto-card {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+}
+
+.dark-mode .btn-agregar {
+  background-color: #333;
+  color: white;
+}
+
+.dark-mode .btn-agregar:hover {
+  background-color: #444;
+}
+
+.dark-mode .footer {
+  background-color: #1e1e1e;
+}
+
+/* Botón de alternar modo oscuro */
+.dark-mode-toggle {
+  position: absolute;
+  bottom: 60px; /* Ajustar distancia desde la parte inferior */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.dark-mode-toggle:hover {
+  color: #ffcc00;
+}
+
+.dark-mode-toggle i {
+  transition: color 0.3s ease;
+}
+
+.dark-mode-toggle:hover i {
+  color: #ffcc00;
+}
+
+
+/* Asegurar que el modal mantenga los colores */
+.modal-card {
+  background: white;
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .modal-card {
+  background: white !important;
+  color: black !important;
 }

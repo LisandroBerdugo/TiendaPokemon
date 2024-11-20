@@ -13,19 +13,20 @@
 <body ng-controller="MainController as ctrl">
 
   <!-- Cabecera -->
-  <header class="header">
-    <div class="header-container">
-      <h1 class="logo">Tienda Pokémon</h1>
-      <nav class="menu">
-        <ul>
-          <li>Inicio</li>
-          <li>Productos</li>
-          <li>Carrito</li>
-          <li>Contacto</li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<header class="header">
+  <div class="header-container">
+    <h1 class="logo">Tienda Pokémon</h1>
+    <nav class="menu">
+      <ul>
+        <li>Inicio</li>
+        <li>Productos</li>
+        <li>Carrito</li>
+        <li>Contacto</li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 
   <!-- Contenido -->
 <main class="main-container">
@@ -35,6 +36,16 @@
   <button class="toggle-sidebar-btn" ng-click="ctrl.toggleSidebar()">
     <i class="fas" ng-class="{'fa-search': ctrl.sidebarCollapsed, 'fa-arrow-left': !ctrl.sidebarCollapsed}"></i>
   </button>
+    
+<button class="dark-mode-toggle" ng-click="ctrl.toggleDarkMode()">
+  <i class="fas" ng-class="{'fa-moon': !ctrl.isDarkMode, 'fa-sun': ctrl.isDarkMode}"></i>
+</button>
+
+  <button class="dark-mode-toggle" ng-click="ctrl.toggleDarkMode()">
+    <i class="fas" ng-class="{'fa-moon': !ctrl.isDarkMode, 'fa-sun': ctrl.isDarkMode}"></i>
+  </button>
+
+  <div class="sidebar-content" ng-hide="ctrl.sidebarCollapsed">
   <!-- Contenido de los filtros -->
   <div class="sidebar-content" ng-hide="ctrl.sidebarCollapsed">
     <h2>Filtros</h2>
@@ -93,13 +104,64 @@
   <!-- Contenido principal (cartas de Pokémon) -->
   <section class="main-content">
     <div class="productos-container">
-      <div class="producto-card" ng-repeat="pokemon in ctrl.pokemons | filter:ctrl.filtrarPokemons">
-        <img ng-src="{{pokemon.imagen}}" alt="{{pokemon.nombre}}" class="producto-img">
-        <h3 class="producto-nombre">{{pokemon.nombre}}</h3>
-        <p class="producto-tipo">{{pokemon.tipo}} <span ng-if="pokemon.subtipo">/ {{pokemon.subtipo}}</span></p>
-        <p class="producto-precio">Precio: ${{pokemon.precio}}</p>
-        <button class="btn-agregar">Agregar al Carrito</button>
+<!-- Tarjetas de Pokémon -->
+<!-- Tarjetas de Pokémon -->
+<div class="producto-card" ng-repeat="pokemon in ctrl.pokemons | filter:ctrl.filtrarPokemons">
+  <img ng-src="{{pokemon.imagen}}" alt="{{pokemon.nombre}}" class="producto-img" ng-click="ctrl.triggerFlip(pokemon)">
+  <h3 class="producto-nombre">{{pokemon.nombre}}</h3>
+  <p class="producto-tipo">{{pokemon.tipo}} <span ng-if="pokemon.subtipo">/ {{pokemon.subtipo}}</span></p>
+  <p class="producto-precio">Precio: ${{pokemon.precio}}</p>
+  <button class="btn-agregar" ng-click="ctrl.addToCart(pokemon); $event.stopPropagation()">Agregar al Carrito</button>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" ng-class="{'show': ctrl.showModal}">
+  <div class="modal-card">
+    <button class="close-modal" ng-click="ctrl.closeModal()">X</button>
+
+    <!-- Imagen y nombre -->
+    <div class="modal-header">
+      <img ng-src="{{ctrl.selectedPokemon.imagen}}" alt="{{ctrl.selectedPokemon.nombre}}">
+      <h3>{{ctrl.selectedPokemon.nombre}}</h3>
+    </div>
+
+    <!-- Cuerpo del modal -->
+    <div class="modal-body">
+      <!-- Información General -->
+      <div class="column">
+        <h4>Información General</h4>
+        <p><strong>Tipo:</strong> {{ctrl.selectedPokemon.tipo}}</p>
+        <p ng-if="ctrl.selectedPokemon.subtipo"><strong>Subtipo:</strong> {{ctrl.selectedPokemon.subtipo}}</p>
+        <p><strong>Género:</strong> {{ctrl.selectedPokemon.genero || 'Sin género'}}</p>
+        <p><strong>Rareza:</strong> {{ctrl.selectedPokemon.rareza}}</p>
+        <p><strong>Precio:</strong> ${{ctrl.selectedPokemon.precio}}</p>
       </div>
+
+      <!-- Línea divisoria -->
+      <div class="divider"></div>
+
+      <!-- Estadísticas -->
+      <div class="column">
+        <h4>Estadísticas</h4>
+        <div class="estadistica-item" ng-repeat="(stat, value) in ctrl.selectedPokemon.estadisticas" ng-if="stat !== 'total' && stat !== 'media'">
+          <span class="stat-label">{{stat | capitalize}}:</span>
+          <span class="stars">
+            <i class="fa fa-star" ng-repeat="n in [].constructor(value) track by $index"></i>
+          </span>
+        </div>
+        <p><strong>Total:</strong> {{ctrl.selectedPokemon.estadisticas.total}}</p>
+        <p><strong>Media:</strong> {{ctrl.selectedPokemon.estadisticas.media.toFixed(1)}}</p>
+      </div>
+    </div>
+
+    <!-- Pie del modal -->
+    <div class="modal-footer">
+      <button class="btn-agregar" ng-click="ctrl.addToCart(ctrl.selectedPokemon)">Agregar al Carrito</button>
+    </div>
+  </div>
+</div>
+
+
     </div>
   </section>
 </main>
