@@ -1,0 +1,266 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+.cart-page {
+  display: flex;
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 20px;
+}
+
+.cart-column, .payment-column {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.cart-column {
+  max-width: 60%;
+}
+
+.payment-column {
+  max-width: 40%;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.cart-item-details h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.cart-item-details p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.cart-item-actions {
+  text-align: right;
+}
+
+.cart-item-actions p {
+  margin: 5px 0;
+}
+
+.btn-remove {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-remove:hover {
+  background: darkred;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
+
+.payment-methods img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.card-details {
+  display: flex;
+  gap: 10px;
+}
+
+.card-details div {
+  flex: 1;
+}
+
+.payment-summary {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.payment-summary p {
+  margin: 5px 0;
+}
+
+.btn-checkout {
+  background: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.btn-checkout:hover {
+  background: darkgreen;
+}
+
+/* Estilos para la tarjeta interactiva */
+.card-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.credit-card {
+  width: 100%;
+  height: 250px;
+  perspective: 1000px;
+  position: relative;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+.credit-card .card-front,
+.credit-card .card-back {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background-color: #1E1E2F;
+  color: white;
+  position: absolute;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.credit-card .card-front {
+  transform: rotateY(0deg);
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.credit-card .card-back {
+  transform: rotateY(180deg);
+  background-color: #1C1C28;
+}
+
+.credit-card.flipped .card-front {
+  transform: rotateY(-180deg);
+}
+
+.credit-card.flipped .card-back {
+  transform: rotateY(0deg);
+}
+
+.card-front .chip {
+  width: 50px;
+  height: 30px;
+  background: #FFD700;
+  border-radius: 5px;
+  margin-bottom: 0px;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card-details .card-number {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.card-details .card-name {
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.card-details .card-expiration {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.card-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.card-back .black-strip {
+  height: 40px;
+  background-color: black;
+  margin: 20px 0;
+}
+
+.card-back .cvv-area {
+  margin: 5px 0;
+  padding: 5px;
+  background: #E0E0E0;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.card-back .cvv-label {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.card-back .cvv-value {
+  font-size: 1rem;
+  color: #000;
+}

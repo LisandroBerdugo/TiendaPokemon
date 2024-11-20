@@ -16,14 +16,12 @@
 <header class="header">
   <div class="header-container">
     <h1 class="logo">Tienda Pokémon</h1>
-    <nav class="menu">
-      <ul>
-        <li>Inicio</li>
-        <li>Productos</li>
-        <li>Carrito</li>
-        <li>Contacto</li>
-      </ul>
-    </nav>
+          <!-- Icono del carrito -->
+    <div class="cart-icon" ng-click="ctrl.goToCart()">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count" ng-bind="ctrl.cartCount"></span>
+    </div>
+
   </div>
 </header>
 
@@ -104,7 +102,7 @@
   <!-- Contenido principal (cartas de Pokémon) -->
   <section class="main-content">
     <div class="productos-container">
-<!-- Tarjetas de Pokémon -->
+
 <!-- Tarjetas de Pokémon -->
 <div class="producto-card" ng-repeat="pokemon in ctrl.pokemons | filter:ctrl.filtrarPokemons">
   <img ng-src="{{pokemon.imagen}}" alt="{{pokemon.nombre}}" class="producto-img" ng-click="ctrl.triggerFlip(pokemon)">

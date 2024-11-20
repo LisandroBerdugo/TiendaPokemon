@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="tiendaApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito Pokémon</title>
+  <link rel="stylesheet" href="cart.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="../JSON/app.js"></script> <!-- Asegúrate de esta línea -->
+  <script src="cartController.js"></script>
+</head>
+<body ng-controller="CartController as ctrl">
+
+<div class="cart-page">
+  <!-- Columna izquierda: Carrito -->
+  <div class="cart-column">
+    <h2>Carrito de compras</h2>
+    <p>Tienes {{ctrl.cart.length}} items en tu carrito</p>
+    
+    <div class="cart-item" ng-repeat="item in ctrl.cart">
+      <img ng-src="{{item.imagen}}" alt="{{item.nombre}}" class="cart-item-img">
+      <div class="cart-item-details">
+        <h3>{{item.nombre}}</h3>
+        <p>{{item.quantity}} × ${{item.precio}}</p>
+      </div>
+      <div class="cart-item-actions">
+        <input type="number" ng-model="item.quantity" min="1" ng-change="ctrl.updateCart()">
+        <p>Subtotal: ${{item.quantity * item.precio}}</p>
+        <button class="btn-remove" ng-click="ctrl.removeItem(item)">Eliminar</button>
+      </div>
+    </div>
+
+    <a href="../index.html" class="btn-back">← Continuar comprando</a>
+  </div>
+
+  <!-- Columna derecha: Detalles del pago -->
+  <div class="payment-column">
+    <h2>Detalles de pago</h2>
+
+    <!-- Tarjeta interactiva -->
+    <div class="card-container">
+      <div class="credit-card" ng-class="{'flipped': ctrl.showBack}">
+        <!-- Lado frontal -->
+        <div class="card-front">
+  <div class="chip"></div>
+  <div class="card-details">
+    <!-- Número de tarjeta en su propia línea -->
+    <p class="card-number">{{ctrl.cardNumber || '#### #### #### ####'}}</p>
+    <!-- Nombre del titular en su propia línea -->
+    <p class="card-name">{{ctrl.cardHolder || 'NOMBRE COMPLETO'}}</p>
+    <!-- Fecha de expiración alineada a la derecha -->
+    <p class="card-expiration">{{ctrl.cardExpiration || 'MM/YY'}}</p>
+  </div>
+ <!-- <div class="card-logo">
+    <img src="mastercard.png" alt="MasterCard" style="width: 60px;">
+  </div>-->
+</div>
+
+        <!-- Lado trasero -->
+        <div class="card-back">
+          <div class="black-strip"></div>
+          <div class="cvv-area">
+            <p class="cvv-label">CVV</p>
+            <p class="cvv-value">{{ctrl.cardCVV || '###'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario de datos -->
+    <form>
+      <label for="cardholder-name">Nombre del titular</label>
+      <input id="cardholder-name" type="text" placeholder="Nombre completo"
+             ng-model="ctrl.cardHolder" ng-blur="ctrl.showBack = false">
+
+      <label for="card-number">Número de tarjeta</label>
+      <input id="card-number" type="text" maxlength="19" placeholder="#### #### #### ####"
+             ng-model="ctrl.cardNumber" ng-blur="ctrl.showBack = false">
+
+      <div class="card-details">
+        <div>
+          <label for="expiration">Fecha de expiración</label>
+          <input id="expiration" type="text" maxlength="5" placeholder="MM/YY"
+                 ng-model="ctrl.cardExpiration" ng-blur="ctrl.showBack = false">
+        </div>
+        <div>
+          <label for="cvv">CVV</label>
+          <input id="cvv" type="text" maxlength="3" placeholder="123"
+                 ng-model="ctrl.cardCVV" ng-focus="ctrl.showBack = true" ng-blur="ctrl.showBack = false">
+        </div>
+      </div>
+    </form>
+
+    <div class="payment-summary">
+      <p>Subtotal: ${{ctrl.subtotal}}</p>
+      <p>Pago por servicio: $20.00</p>
+      <p><strong>Total: ${{ctrl.total}}</strong></p>
+    </div>
+    
+    <button class="btn-checkout" ng-click="ctrl.checkout()">Pagar</button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -502,7 +502,6 @@ var pokemonsData = [
       "genero": "Macho",
       "rareza": "Común",
       "precio": 50,
-      "precio": 50,
       "imagen": "imagenes_pokemon/Raticate.gif",
       "estadisticas": {
         "velocidad": 4,
@@ -522,7 +521,6 @@ var pokemonsData = [
       "genero": "Hembra",
       "rareza": "Raro",
       "precio": 150,
-      "precio": 50,
       "imagen": "imagenes_pokemon/Flareon.gif",
       "estadisticas": {
         "velocidad": 3,

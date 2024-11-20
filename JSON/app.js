@@ -6,19 +6,18 @@ angular.module('tiendaApp', [])
       return input.charAt(0).toUpperCase() + input.slice(1);
     };
   })
-  .controller('MainController', function($timeout) {
+  .controller('MainController', function($timeout, $window) {
     const ctrl = this;
 
     // Cargar datos
     ctrl.pokemons = pokemonsData;
-    
-        // Lógica para alternar el modo oscuro
-ctrl.isDarkMode = false; // Inicialmente modo claro
 
-ctrl.toggleDarkMode = function() {
-  ctrl.isDarkMode = !ctrl.isDarkMode; // Cambia el estado
-  document.body.classList.toggle('dark-mode', ctrl.isDarkMode); // Aplica la clase CSS
-};
+    // Lógica para alternar el modo oscuro
+    ctrl.isDarkMode = false; // Inicialmente modo claro
+    ctrl.toggleDarkMode = function() {
+      ctrl.isDarkMode = !ctrl.isDarkMode; // Cambia el estado
+      document.body.classList.toggle('dark-mode', ctrl.isDarkMode); // Aplica la clase CSS
+    };
 
     // Filtros
     ctrl.filtroNombreNumero = '';
@@ -38,16 +37,13 @@ ctrl.toggleDarkMode = function() {
       ) {
         return false;
       }
-
       if (ctrl.filtroTipo && pokemon.tipo !== ctrl.filtroTipo) return false;
       if (ctrl.filtroSubtipo && pokemon.subtipo !== ctrl.filtroSubtipo) return false;
-
       if (ctrl.filtroGenero) {
         if (ctrl.filtroGenero === 'Sin género' && pokemon.genero !== null) return false;
         if (ctrl.filtroGenero !== 'Sin género' && pokemon.genero !== ctrl.filtroGenero)
           return false;
       }
-
       if (ctrl.filtroRareza && pokemon.rareza !== ctrl.filtroRareza) return false;
 
       return true;
@@ -135,5 +131,46 @@ ctrl.toggleDarkMode = function() {
           sidebarElement.classList.remove('collapsed');
         }
       }
+    };
+
+    // --- Lógica del carrito ---
+    // Inicializar carrito desde localStorage
+    ctrl.cart = JSON.parse($window.localStorage.getItem('cart')) || [];
+    ctrl.cartCount = ctrl.cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    // Función para agregar un Pokémon al carrito
+    ctrl.addToCart = function(pokemon) {
+      // Verificar si el Pokémon ya está en el carrito
+      const existingItem = ctrl.cart.find(item => item.numero === pokemon.numero);
+
+      if (existingItem) {
+        // Si ya existe, incrementar cantidad
+        existingItem.quantity += 1;
+      } else {
+        // Si no existe, agregar al carrito con cantidad inicial de 1
+        ctrl.cart.push({
+          numero: pokemon.numero,
+          nombre: pokemon.nombre,
+          precio: pokemon.precio,
+          imagen: pokemon.imagen,
+          quantity: 1
+        });
+      }
+
+      // Actualizar localStorage y el contador
+      ctrl.updateCart();
+    };
+
+    // Función para actualizar el carrito y guardar en localStorage
+    ctrl.updateCart = function() {
+      // Guardar carrito en localStorage
+      $window.localStorage.setItem('cart', JSON.stringify(ctrl.cart));
+      // Actualizar el contador de productos
+      ctrl.cartCount = ctrl.cart.reduce((sum, item) => sum + item.quantity, 0);
+    };
+
+    // Función para redirigir a la página del carrito
+    ctrl.goToCart = function() {
+      $window.location.href = "Carrito/cart.html"; // Cambiar a la página del carrito
     };
   });
