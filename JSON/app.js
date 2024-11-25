@@ -1,6 +1,5 @@
 angular.module('tiendaApp', [])
   .filter('capitalize', function() {
-    // Filtro para capitalizar textos
     return function(input) {
       if (!input) return '';
       return input.charAt(0).toUpperCase() + input.slice(1);
@@ -12,11 +11,34 @@ angular.module('tiendaApp', [])
     // Cargar datos
     ctrl.pokemons = pokemonsData;
 
-    // Lógica para alternar el modo oscuro
-    ctrl.isDarkMode = false; // Inicialmente modo claro
+    // Lógica para alternar el modo oscuro y cambiar el fondo
+    ctrl.isDarkMode = JSON.parse($window.localStorage.getItem('darkMode')) || false;
+
+    // Función para aplicar el fondo según el modo
+    const applyBackground = function() {
+      if (ctrl.isDarkMode) {
+        document.body.classList.add('dark-mode');
+        document.body.classList.remove('day-mode');
+        document.body.style.backgroundImage = "url('imagenes_pokemon/paisajefondo_noche.jpg')";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+      } else {
+        document.body.classList.add('day-mode');
+        document.body.classList.remove('dark-mode');
+        document.body.style.backgroundImage = "url('imagenes_pokemon/paisajefondo_dia.jpg')";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+      }
+    };
+
+    // Aplica el fondo y modo al cargar la página
+    applyBackground();
+
+    // Función para alternar entre modos día y noche
     ctrl.toggleDarkMode = function() {
-      ctrl.isDarkMode = !ctrl.isDarkMode; // Cambia el estado
-      document.body.classList.toggle('dark-mode', ctrl.isDarkMode); // Aplica la clase CSS
+      ctrl.isDarkMode = !ctrl.isDarkMode;
+      applyBackground(); // Aplica los cambios de fondo
+      $window.localStorage.setItem('darkMode', JSON.stringify(ctrl.isDarkMode)); // Guarda el estado
     };
 
     // Filtros
@@ -57,26 +79,22 @@ angular.module('tiendaApp', [])
     ctrl.triggerFlip = function(pokemon) {
       ctrl.selectedPokemon = pokemon;
 
-      // Encuentra la tarjeta seleccionada de forma dinámica
       const cardElement = Array.from(document.querySelectorAll('.producto-card')).find(
         (card) =>
           card.querySelector('.producto-nombre').textContent.trim() === pokemon.nombre
       );
 
       if (cardElement) {
-        const rect = cardElement.getBoundingClientRect(); // Coordenadas actuales de la tarjeta
+        const rect = cardElement.getBoundingClientRect();
         const viewportCenterX = window.innerWidth / 2;
         const viewportCenterY = window.innerHeight / 2;
 
-        // Calcula el centro de la tarjeta actual
         const cardCenterX = rect.left + rect.width / 2;
         const cardCenterY = rect.top + rect.height / 2;
 
-        // Calcula el desplazamiento necesario para llevar la tarjeta al centro del viewport
         const translateX = viewportCenterX - cardCenterX;
         const translateY = viewportCenterY - cardCenterY;
 
-        // Aplica el movimiento al centro
         cardElement.style.position = 'fixed';
         cardElement.style.top = `${rect.top}px`;
         cardElement.style.left = `${rect.left}px`;
@@ -85,22 +103,20 @@ angular.module('tiendaApp', [])
         cardElement.style.transition = 'transform 0.6s ease-in-out';
         cardElement.style.transform = `translate(${translateX}px, ${translateY}px) rotateY(0deg)`;
 
-        // Aplica el giro después de un pequeño retraso
         $timeout(() => {
           cardElement.style.transform = `translate(${translateX}px, ${translateY}px) rotateY(180deg)`;
         }, 100);
 
-        // Muestra el modal después de que termina la animación
         $timeout(() => {
           ctrl.showModal = true;
-          cardElement.style.transition = ''; // Limpia la transición
-          cardElement.style.transform = ''; // Limpia las transformaciones
-          cardElement.style.position = ''; // Restaura el estado original
+          cardElement.style.transition = '';
+          cardElement.style.transform = '';
+          cardElement.style.position = '';
           cardElement.style.top = '';
           cardElement.style.left = '';
           cardElement.style.width = '';
           cardElement.style.height = '';
-        }, 700); // Tiempo total de la animación
+        }, 700);
       }
     };
 
@@ -112,7 +128,7 @@ angular.module('tiendaApp', [])
 
     // Función para manejar estrellas en las estadísticas
     ctrl.getStarsArray = function(value) {
-      return new Array(value); // Genera un array con el tamaño del valor
+      return new Array(value);
     };
 
     // Estado inicial de la barra lateral
@@ -122,7 +138,6 @@ angular.module('tiendaApp', [])
     ctrl.toggleSidebar = function() {
       ctrl.sidebarCollapsed = !ctrl.sidebarCollapsed;
 
-      // Encuentra el elemento de la barra lateral y cambia la clase
       const sidebarElement = document.querySelector('.sidebar');
       if (sidebarElement) {
         if (ctrl.sidebarCollapsed) {
@@ -134,20 +149,15 @@ angular.module('tiendaApp', [])
     };
 
     // --- Lógica del carrito ---
-    // Inicializar carrito desde localStorage
     ctrl.cart = JSON.parse($window.localStorage.getItem('cart')) || [];
     ctrl.cartCount = ctrl.cart.reduce((sum, item) => sum + item.quantity, 0);
 
-    // Función para agregar un Pokémon al carrito
     ctrl.addToCart = function(pokemon) {
-      // Verificar si el Pokémon ya está en el carrito
       const existingItem = ctrl.cart.find(item => item.numero === pokemon.numero);
 
       if (existingItem) {
-        // Si ya existe, incrementar cantidad
         existingItem.quantity += 1;
       } else {
-        // Si no existe, agregar al carrito con cantidad inicial de 1
         ctrl.cart.push({
           numero: pokemon.numero,
           nombre: pokemon.nombre,
@@ -157,20 +167,15 @@ angular.module('tiendaApp', [])
         });
       }
 
-      // Actualizar localStorage y el contador
       ctrl.updateCart();
     };
 
-    // Función para actualizar el carrito y guardar en localStorage
     ctrl.updateCart = function() {
-      // Guardar carrito en localStorage
       $window.localStorage.setItem('cart', JSON.stringify(ctrl.cart));
-      // Actualizar el contador de productos
       ctrl.cartCount = ctrl.cart.reduce((sum, item) => sum + item.quantity, 0);
     };
 
-    // Función para redirigir a la página del carrito
     ctrl.goToCart = function() {
-      $window.location.href = "Carrito/cart.html"; // Cambiar a la página del carrito
+      $window.location.href = "Carrito/cart.html";
     };
   });

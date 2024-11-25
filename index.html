@@ -36,12 +36,14 @@
   </button>
     
 <button class="dark-mode-toggle" ng-click="ctrl.toggleDarkMode()">
-  <i class="fas" ng-class="{'fa-moon': !ctrl.isDarkMode, 'fa-sun': ctrl.isDarkMode}"></i>
+  <img
+    ng-src="{{ctrl.isDarkMode ? 'imagenes_pokemon/pikachudia.png' : 'imagenes_pokemon/gengarnoche.png'}}"
+    alt="{{ctrl.isDarkMode ? 'Modo Noche' : 'Modo Día'}}"
+    ng-class="{'gengar': ctrl.isDarkMode, 'pikachu': !ctrl.isDarkMode}"
+    class="toggle-icon"
+  >
 </button>
 
-  <button class="dark-mode-toggle" ng-click="ctrl.toggleDarkMode()">
-    <i class="fas" ng-class="{'fa-moon': !ctrl.isDarkMode, 'fa-sun': ctrl.isDarkMode}"></i>
-  </button>
 
   <div class="sidebar-content" ng-hide="ctrl.sidebarCollapsed">
   <!-- Contenido de los filtros -->

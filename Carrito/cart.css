@@ -42,11 +42,15 @@ h2 {
 }
 
 .cart-item-img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
+  width: 80px; /* Ajusta el ancho máximo de las imágenes */
+  height: auto; /* Mantén la proporción original */
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortarla */
+  border-radius: 8px; /* Opcional: bordes redondeados */
+  display: block; /* Asegura que la imagen se alinee correctamente */
+  margin-right: 10px; /* Espaciado entre la imagen y el texto */
+  max-height: 80px; /* Límite máximo de altura */
 }
+
 
 .cart-item-details {
   flex: 1;
@@ -204,7 +208,7 @@ form input {
 
 .card-front .chip {
   width: 50px;
-  height: 30px;
+  height: 35px;
   background: #FFD700;
   border-radius: 5px;
   margin-bottom: 0px;
@@ -214,7 +218,7 @@ form input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 1px;
 }
 
 .card-details .card-number {
@@ -227,7 +231,7 @@ form input {
   font-size: 1rem;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .card-details .card-expiration {

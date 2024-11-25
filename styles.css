@@ -475,15 +475,6 @@ body.dark-mode {
   color: #ffcc00;
 }
 
-.dark-mode-toggle i {
-  transition: color 0.3s ease;
-}
-
-.dark-mode-toggle:hover i {
-  color: #ffcc00;
-}
-
-
 /* Asegurar que el modal mantenga los colores */
 .modal-card {
   background: white;
@@ -496,4 +487,47 @@ body.dark-mode {
 body.dark-mode .modal-card {
   background: white !important;
   color: black !important;
+}
+
+.toggle-icon {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  cursor: pointer;
+  border-radius: 50%; /* Mantiene la forma circular */
+  transition: transform 0.3s ease;
+}
+
+.toggle-icon.gengar {
+  background-color: #ffcc00; /* Fondo morado para Gengar */
+}
+
+.toggle-icon.pikachu {
+  background-color: #6a0dad; /* Fondo amarillo para Pikachu */
+}
+
+.toggle-icon:hover {
+  transform: scale(1.2); /* Ampliar al pasar el cursor */
+}
+
+body.day-mode {
+  background-image: url('imagenes_pokemon/paisajefondo_dia.jpg');
+  background-size: 100% 100%; /* 80% del ancho y 60% del alto del viewport */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que se repita */
+  background-attachment: fixed; /* Fija el fondo mientras el contenido se desplaza */
+}
+
+body.dark-mode {
+  background-image: url('imagenes_pokemon/paisajefondo_noche.jpg');
+  background-size: 100% 100%; /* 80% del ancho y 60% del alto del viewport */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que se repita */
+  background-attachment: fixed; /* Fija el fondo mientras el contenido se desplaza */
+}
+
+@media (max-width: 750px) {
+  body.day-mode, body.dark-mode {
+    background-size: 100%; /* Ajusta al 100% en pantallas más pequeñas */
+  }
 }
